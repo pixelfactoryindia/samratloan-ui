@@ -4,12 +4,15 @@ const app = express();
 
 const PORT = process.env.PORT || 3000;
 
-app.use(express.static(__dirname)); // serves all files in the current directory
+// ✅ Serve static files from current directory
+app.use(express.static(__dirname));
 
+// ✅ Root route
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+  res.sendFile(path.join(__dirname, 'index.html')); // Or change to your home page
 });
 
-app.listen(PORT, () => {
+// ✅ Change here: listen on 0.0.0.0
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server running on port ${PORT}`);
 });
