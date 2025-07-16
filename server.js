@@ -18,6 +18,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Supabase Initialization
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
 
+// Health Check Route
+app.get('/health', (req, res) => res.send('OK'));
+
 // Default route to index.html (sign-in page)
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
@@ -77,6 +80,5 @@ app.get('/dashboard.html', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', '_dashboard.html'));
 });
 
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
-});
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
